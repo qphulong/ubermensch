@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
+import { useNavigate, Routes, Route } from 'react-router-dom'; // Import useNavigate for routing
 
 function App() {
   const [data, setData] = useState<string>('');
+  const navigate = useNavigate(); // Initialize navigate hook
 
   useEffect(() => {
     // Access the environment variable with the correct VITE_ prefix
@@ -23,9 +25,25 @@ function App() {
     const backendUrl = import.meta.env.VITE_BACKEND_URL;
     console.log('Backend URL:', backendUrl);
   }, []);
-  
 
-  return <h1>{data || 'Loading...'}</h1>;
+  // Handler function for button click
+  const handleButtonClick = () => {
+    navigate('/first-post');
+  };
+
+  return (
+    <div>
+      <h1>{data || 'Loading...'}</h1>
+      <button onClick={handleButtonClick}>A</button>
+      <Routes>
+        <Route path="/first-post" element={<FirstPost />} />
+      </Routes>
+    </div>
+  );
+}
+
+function FirstPost() {
+  return <h1>First Post Page</h1>;
 }
 
 export default App;
