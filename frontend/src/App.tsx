@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Routes, Route } from 'react-router-dom'; // Import useNavigate for routing
 
+import { WEB_APP_ROUTE } from './global/WebAppRoute';
+import FirstPage from './pages/FirstPage';
+
 function App() {
   const [data, setData] = useState<string>('');
   const navigate = useNavigate(); // Initialize navigate hook
@@ -28,7 +31,7 @@ function App() {
 
   // Handler function for button click
   const handleButtonClick = () => {
-    navigate('/first-post');
+    navigate(WEB_APP_ROUTE.FIRST_PAGE);
   };
 
   return (
@@ -36,14 +39,10 @@ function App() {
       <h1>{data || 'Loading...'}</h1>
       <button onClick={handleButtonClick}>A</button>
       <Routes>
-        <Route path="/first-post" element={<FirstPost />} />
+        <Route path={WEB_APP_ROUTE.FIRST_PAGE} element={<FirstPage />} />
       </Routes>
     </div>
   );
-}
-
-function FirstPost() {
-  return <h1>First Post Page</h1>;
 }
 
 export default App;
