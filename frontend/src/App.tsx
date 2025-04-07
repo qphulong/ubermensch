@@ -37,7 +37,7 @@ function App() {
   return (
     <div>
       <h1>{data || 'Loading...'}</h1>
-      <button onClick={handleButtonClick}>A</button>
+      <button onClick={handleButtonClick}>Click Me</button>
       <Routes>
         <Route path={WEB_APP_ROUTE.FIRST_PAGE} element={<FirstPage />} />
       </Routes>
