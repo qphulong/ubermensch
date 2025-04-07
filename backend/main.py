@@ -19,7 +19,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "Halo, ubermensch!"}
+    return {"message": "Hallo, ubermensch!"}
 
 @app.get("/items/{item_id}")
 def read_item(item_id: int, q: str = None):
