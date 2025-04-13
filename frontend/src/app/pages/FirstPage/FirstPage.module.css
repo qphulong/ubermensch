@@ -10,7 +10,7 @@
 .leftColumn {
   flex: 1; /* Takes up half the space */
   background-color: #ffcccc; /* Light red for debugging */
-  padding: 20px;
+  padding: 0px;
   overflow: auto; /* Allow scrolling if content overflows */
 }
 
