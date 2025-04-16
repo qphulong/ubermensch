@@ -1,58 +1,101 @@
 import React from 'react';
+import BlockMath from "@matejmazur/react-katex";
+import InlineMath from "@matejmazur/react-katex";
+import 'katex/dist/katex.min.css';
 
 const Post: React.FC = () => {
   return (
-    <div style={{ padding: '20px', maxHeight: '80vh', overflowY: 'auto' }}>
-      <h1>Sample Blog Post</h1>
+    <div style={{ padding: '20px', maxHeight: '88vh', overflowY: 'auto', lineHeight: '1.6' }}>
+      <h1 style={{ borderBottom: '2px solid #f0f0f0', paddingBottom: '10px' }}>Where the ⅓ Comes From in Cone Volume?</h1>
+
       <h2>Introduction</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.
+        Most of us are taught that the formula for the volume of a cone is:
       </p>
-      
-      <h2>Chapter 1: The Beginning</h2>
-      <p>
-        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-      </p>
-      <p>
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-      </p>
-      
-      <h2>Chapter 2: The Middle</h2>
-      <p>
-        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
+      <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <BlockMath math="V = \frac{1}{3}\pi r^2 h" />
+      </div>
+      <p style={{ textAlign: 'center', fontStyle: 'italic', marginBottom: '20px' }}>
+        where <InlineMath math="r" /> is the radius of the base and <InlineMath math="h" /> is the height of the cone
       </p>
       <p>
-        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+        While most education programs present the formula <InlineMath math="V = \frac{1}{3}\pi r^2 h" />,
+        they rarely explain the mathematical reasoning behind the 1/3 factor. We can intuitively understand that:
       </p>
-      
-      <h2>Chapter 3: The End</h2>
+
+      <ul style={{ margin: '10px 0', paddingLeft: '20px' }}>
+        <li><InlineMath math="\pi r^2" /> represents the base area</li>
+        <li>The volume clearly scales with both height and base area</li>
+      </ul>
+
       <p>
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.
+        But why exactly 1/3? Why couldn't it be 1/2 or 1/4? We know the cone's volume must be less than
+        its circumscribed cylinder (<InlineMath math="V_{cylinder} = \pi r^2 h" />), but the precise
+        derivation reveals why nature settled on this particular fraction. This post will explore the reason
+        behind this one-third constant.
       </p>
+
+      <h2>Background</h2>
       <p>
-        Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae.
+        A cone is a three-dimensional geometric shape that tapers smoothly from a flat base (usually circular)
+        to a point called the apex or vertex. It's basically a pyramid with a circular base.
       </p>
-      
-      <h2>Conclusion</h2>
+      <h3>Interactive Controls</h3>
+      <ul>
+        <li><strong>Rotate</strong>: Right-click + drag to spin the cone.</li>
+        <li><strong>Move</strong>: Left-click + drag to reposition.</li>
+        <li><strong>Zoom</strong>: Scroll to adjust the view.</li>
+      </ul>
+
+      <h3>Adjustable Settings</h3>
+      <ul>
+        <li><strong>Rotation Speed</strong>: Controls the cone's spin rate.</li>
+        <li><strong>Delta h (Δh)</strong>: Modifies the cone's cross-section (explained below).</li>
+      </ul>
+
+      <h3>2D Cross-Section View</h3>
       <p>
-        Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nisl eget ultricies tincidunt, nisl nisl aliquam nisl, eget ultricies nisl nisl eget nisl.
+        The panel on the bottom-right shows the cone's <strong>two-dimensional cross-section</strong>. Adjusting Δh alters this shape—observe the changes as Δh approaches <strong>0 (dh)</strong>.
       </p>
-      
-      <h2>Appendix A: Additional Thoughts</h2>
+
+      <h2>Where does the 1/3 come from?</h2>
+      <p>From a calculus perspective:</p>
+      <p>We calculate the volume of a cone by summing the volumes of infinitely thin discs.</p>
+      <p><strong>What does "infinitely thin" mean?</strong></p>
+      <p>For simplicity, imagine a disc with height Δh. If Δh is large, a slice of the cone looks like an isosceles trapezoid in 2D. However, as we reduce Δh, making it approach 0 (but never reaching 0), we call it "infinitely small" and denote it as dh.</p>
+      <p>A disc with height dh is so thin it resembles a piece of paper. By summing the volumes of all such "paper-thin" discs, we obtain the total volume of the Cone!</p>
+
+      <h3>Let's construct the Formula for the Volume of the Cone</h3>
+      <p>So the approach is summing all the infinitely small discs</p>
+
+      <p>Let the height be <InlineMath math="h" />, then for a disc at height <InlineMath math="x" /> (from 0 to <InlineMath math="h" />) that has infinitely small height <InlineMath math="dx" />.</p>
+
       <p>
-        Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+        The radius of the cone at height <InlineMath math="x" /> would be:{" "}
+        <InlineMath math="y = r - \frac{x}{h}" />    where <InlineMath math="r" /> is the
+        base radius.
       </p>
-      <p>
-        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-      </p>
-      
-      <h2>Appendix B: Final Notes</h2>
-      <p>
-        Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-      </p>
-      <p>
-        Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
-      </p>
+
+      <p>This leads to the area of the disc being:
+        <BlockMath math="A = \pi y^2 = \pi \left(r - \frac{x}{h}\right)^2" /></p>
+
+      <p>The volume of an infinitely thin disc is the area times its height:
+        <BlockMath math="dV = A \cdot dx = \pi \left(r - \frac{x}{h}\right)^2 dx" /></p>
+
+      <p>Summing all discs from <InlineMath math="x = 0" /> to <InlineMath math="x = h" /> gives the total volume is:</p>
+      <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <BlockMath math="V = \int_0^h dV = \int_0^h \pi \left(r - \frac{x}{h}\right)^2 dx" />
+      </div>
+
+      <p>Solving this integral:</p>
+      <p>If want we can do a button here and when click appear how to solve the intergral</p>
+      <div style={{ textAlign: 'center', margin: '20px 0' }}>
+        <BlockMath math="V = \frac{1}{3}\pi r^2 h" />
+      </div>
+
+      <p>Thus, we arrive at the familiar formula for the volume of a cone:
+        <BlockMath math="V = \frac{1}{3}\pi r^2 h" /></p>
+
     </div>
   );
 };

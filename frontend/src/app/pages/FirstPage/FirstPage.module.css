@@ -9,14 +9,14 @@
 
 .leftColumn {
   flex: 1; /* Takes up half the space */
-  background-color: #ffcccc; /* Light red for debugging */
+  background-color: #ffffff; /* Light red for debugging */
   padding: 0px;
   overflow: auto; /* Allow scrolling if content overflows */
 }
 
 .rightColumn {
   flex: 1; /* Takes up half the space */
-  background-color: #ccffcc; /* Light green for debugging */
+  background-color: #ffffff; /* Light green for debugging */
   padding: 20px;
   overflow: auto; /* Allow scrolling if content overflows */
 }

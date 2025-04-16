@@ -17,7 +17,11 @@ const ControlsPanel: React.FC<ControlsPanelProps> = ({
   return (
     <div className={styles.controlsPanel}>
       <label className={styles.label}>
-        {deltaH === 0.01 ? 'dh' : 'Δh'}: {deltaH.toFixed(2)}
+        {deltaH === 0.01 ? (
+          <span style={{ fontWeight: 'bold', fontSize: '1.2em' }}>dh</span>
+        ) : (
+          'Δh'
+        )}: {deltaH.toFixed(2)}
       </label>
       <input
         className={styles.slider}
